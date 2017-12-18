@@ -1,0 +1,31 @@
+{
+  "name": "phountains",
+  "version": "1.0.0",
+  "description": "tool to organize mountains of photos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "test": "echo \"Error: Shit's experimental yo, no tests yet\" && exit 1"
+  },
+  "keywords": [
+    "photos",
+    "photo organization",
+    "batch organization",
+    "image organization"
+  ],
+  "author": "Kent William Innholt",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "exif": "^0.6.0",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "fs-jetpack": "^1.2.0",
+    "next": "^4.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kentwilliam/phountains.git"
+  }
+}
