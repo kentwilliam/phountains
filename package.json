@@ -14,7 +14,7 @@
     "image organization"
   ],
   "author": "Kent William Innholt",
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "exif": "^0.6.0",
     "express": "^4.16.2",
