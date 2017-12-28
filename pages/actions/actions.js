@@ -2,6 +2,5 @@
 
 const pubsub = require("pubsub-js")
 
-module.exports = {
-  setFilter: path => pubsub.publish("SET_FILTER", path)
-}
+export const setFilter = path => pubsub.publish("SET_FILTER", path)
+setFilter.key = "SET_FILTER"
