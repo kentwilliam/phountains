@@ -1,5 +1,6 @@
 // @format
 
+const colorScheme = require("../styles/colorScheme.css.js")
 const layout = require("../styles/layout.css.js")
 
 const Images = ({ images, imageSize }) => {
@@ -15,6 +16,7 @@ const Images = ({ images, imageSize }) => {
       {images.map(image => (
         <li key={image.uri}>
           <img src={image.uri} />
+          <figcaption>{JSON.stringify(image, null, 2)}</figcaption>
         </li>
       ))}
       <style jsx>{`
@@ -28,10 +30,28 @@ const Images = ({ images, imageSize }) => {
         li {
           margin: 0 ${imageMargin}px ${imageMargin}px 0;
           line-height: 0;
+          position: relative;
         }
 
         img {
           max-height: ${imageSize}px;
+        }
+
+        figcaption {
+          white-space: pre;
+          line-height: 1.5em;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          font-size: 8pt;
+          overflow: auto;
+          background: ${colorScheme.background.light};
+        }
+
+        li:not(:hover) figcaption {
+          display: none;
         }
       `}</style>
     </ol>
