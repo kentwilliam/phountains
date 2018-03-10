@@ -1,19 +1,19 @@
 // @format
 
-const ImageSizeInput = ({ imageSize, onChange }) => (
+const ImageMarginInput = ({ imageMargin, onChange }) => (
   <div>
     <input
       max={100}
       min={0}
-      name="imageSize"
+      name="imageMargin"
       type="range"
-      value={imageSize}
+      value={imageMargin}
       onChange={event =>
         onChange(Math.max(0, Math.min(100, Number(event.target.value))))
       }
     />
-    <label htmlFor="imageSize">{imageSize}</label>
+    <label htmlFor="imageMargin">{imageMargin}</label>
   </div>
 )
 
-module.exports = ImageSizeInput
+module.exports = ImageMarginInput

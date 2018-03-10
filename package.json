@@ -16,7 +16,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "concurrently --kill-others \"node ./api/index.js\" \"next\"",
     "test": "echo \"Error: Shit's experimental yo, no tests yet\" && exit 1"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "prettier": "^1.9.2"
   }
 }

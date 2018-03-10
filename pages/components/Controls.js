@@ -8,6 +8,7 @@ const Controls = ({ children }) => (
     <style jsx>{`
       nav {
         margin: ${layout.defaultPadding};
+        display: flex;
       }
     `}</style>
   </React.Fragment>

@@ -3,13 +3,19 @@
 const colorScheme = require("../styles/colorScheme.css.js")
 const layout = require("../styles/layout.css.js")
 
-const Images = ({ images, imageSize }) => {
+const Images = ({ 
+  imageMargin, 
+  imageSize,
+  images, 
+  isGridLockEnabled,
+}) => {
   if (!images) {
     return "Loading ..."
   }
 
   imageSize = distributeImageSize(imageSize)
-  const imageMargin = imageSize / 20
+  imageMargin = Math.max(imageSize / 20, imageMargin)
+  console.log('rendering', isGridLockEnabled)
 
   return (
     <ol>
@@ -31,9 +37,16 @@ const Images = ({ images, imageSize }) => {
           margin: 0 ${imageMargin}px ${imageMargin}px 0;
           line-height: 0;
           position: relative;
+          ${isGridLockEnabled ? 'width: ' + imageSize + 'px;' : ''}
+          ${isGridLockEnabled ? 'justify-content: center;' : ''}
+          ${isGridLockEnabled ? 'align-items: center;' : ''}
+          display: flex;
+          background: ${colorScheme.background.light};
         }
 
-        img {
+        img, 
+        li {
+          ${isGridLockEnabled ? 'max-width: ' + imageSize + 'px;' : ''}
           max-height: ${imageSize}px;
         }
 

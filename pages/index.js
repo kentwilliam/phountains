@@ -1,15 +1,24 @@
+// @format
+
 const Actions = require("./actions/Actions.js")
 const Controls = require("./components/Controls.js")
 const GroupingControls = require("./components/GroupingControls.js")
 const Header = require("./components/Header.js")
+const ImageMarginInput = require("./components/ImageMarginInput.js")
 const ImageSizeInput = require("./components/ImageSizeInput.js")
+const ImageGridLockCheckbox = require("./components/ImageGridLockCheckbox.js")
 const Images = require("./components/Images.js")
 const React = require("react")
 const fetch = require("isomorphic-unfetch")
 const globalCSS = require("./styles/global.css.js")
 const pubsub = require("pubsub-js")
 
-const DEFAULT_STATE = { imageSize: 50, filters: new Set() }
+const DEFAULT_STATE = {
+  filters: new Set(),
+  imageMargin: 5,
+  imageSize: 50,
+  isGridLockEnabled: true
+}
 
 class Index extends React.Component {
   state = DEFAULT_STATE
@@ -50,8 +59,25 @@ class Index extends React.Component {
           imageSize={this.state.imageSize}
           onChange={imageSize => this.setState({ imageSize })}
         />
+        <ImageMarginInput
+          imageMargin={this.state.imageMargin}
+          onChange={imageMargin => this.setState({ imageMargin })}
+        />
+        <ImageGridLockCheckbox
+          isGridLockEnabled={this.state.isGridLockEnabled}
+          onChange={() =>
+            this.setState({
+              isGridLockEnabled: !this.state.isGridLockEnabled
+            })
+          }
+        />
       </Controls>
-      <Images images={this.props.images} imageSize={this.state.imageSize} />
+      <Images
+        isGridLockEnabled={this.state.isGridLockEnabled}
+        images={this.props.images}
+        imageMargin={this.state.imageMargin}
+        imageSize={this.state.imageSize}
+      />
       {globalCSS}
     </React.Fragment>
   )
