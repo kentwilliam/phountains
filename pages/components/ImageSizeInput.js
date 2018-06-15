@@ -2,17 +2,15 @@
 
 const ImageSizeInput = ({ imageSize, onChange }) => (
   <div>
+    <label htmlFor="imageSize">Photo Size: </label>
     <input
-      max={100}
-      min={0}
+      max={500}
+      min={20}
       name="imageSize"
       type="range"
       value={imageSize}
-      onChange={event =>
-        onChange(Math.max(0, Math.min(100, Number(event.target.value))))
-      }
+      onChange={event => onChange(event.target.value)}
     />
-    <label htmlFor="imageSize">{imageSize}</label>
   </div>
 )
 

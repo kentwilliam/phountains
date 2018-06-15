@@ -7,12 +7,13 @@ const GroupingControls = () => (
   <React.Fragment>
     <div>
       {interestingImageProperties.map(property => (
-        <button onClick={() => Actions.setFilter(property)}>{property}</button>
+        <button key={property} onClick={() => Actions.setFilter(property)}>
+          {property}
+        </button>
       ))}
     </div>
     <style jsx>{`
       div {
-        flex: 0 1 50%;
         display: flex;
         flex-wrap: wrap;
       }

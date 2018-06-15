@@ -3,51 +3,67 @@
 const colorScheme = require("../styles/colorScheme.css.js")
 const layout = require("../styles/layout.css.js")
 
-const Images = ({ 
-  imageMargin, 
-  imageSize,
-  images, 
-  isGridLockEnabled,
-}) => {
+const Images = ({ imageMargin, imageSize, images, isGridLockEnabled }) => {
   if (!images) {
     return "Loading ..."
   }
 
-  imageSize = distributeImageSize(imageSize)
   imageMargin = Math.max(imageSize / 20, imageMargin)
-  console.log('rendering', isGridLockEnabled)
 
   return (
-    <ol>
-      {images.map(image => (
-        <li key={image.uri}>
-          <img src={image.uri} />
-          <figcaption>{JSON.stringify(image, null, 2)}</figcaption>
-        </li>
+    <section>
+      {Object.entries(images).map(([group, images]) => (
+        <dl>
+          <dt>{group}</dt>
+          {images.map(image => (
+            <dd key={image.uri}>
+              <img src={image.uri} />
+              <figcaption>{JSON.stringify(image, null, 2)}</figcaption>
+            </dd>
+          ))}
+        </dl>
       ))}
       <style jsx>{`
-        ol {
-          display: flex;
+        section {
           padding: 0;
           margin: ${layout.defaultPadding};
+        }
+
+        dl {
+          display: flex;
           flex-wrap: wrap;
         }
 
-        li {
+        dt {
+          flex: 1 0 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          font-size: 1.2em;
+          border-bottom: 1px solid ${colorScheme.text.medium};
+        }
+
+        dd {
           margin: 0 ${imageMargin}px ${imageMargin}px 0;
           line-height: 0;
           position: relative;
-          ${isGridLockEnabled ? 'width: ' + imageSize + 'px;' : ''}
-          ${isGridLockEnabled ? 'justify-content: center;' : ''}
-          ${isGridLockEnabled ? 'align-items: center;' : ''}
-          display: flex;
-          background: ${colorScheme.background.light};
+          ${isGridLockEnabled
+            ? "width: " + imageSize + "px;"
+            : ""} ${isGridLockEnabled
+              ? "justify-content: center;"
+              : ""} ${isGridLockEnabled
+              ? "align-items: center;"
+              : ""} display: flex;
         }
 
-        img, 
-        li {
-          ${isGridLockEnabled ? 'max-width: ' + imageSize + 'px;' : ''}
-          max-height: ${imageSize}px;
+        img,
+        dd {
+          ${isGridLockEnabled
+            ? "max-width: " + imageSize + "px;"
+            : ""} max-height: ${imageSize}px;
+        }
+
+        img {
+          box-shadow: 0 1px 3px ${colorScheme.background.dark};
         }
 
         figcaption {
@@ -63,22 +79,12 @@ const Images = ({
           background: ${colorScheme.background.light};
         }
 
-        li:not(:hover) figcaption {
+        dd:not(:hover) figcaption {
           display: none;
         }
       `}</style>
-    </ol>
+    </section>
   )
-}
-
-const distributeImageSize = imageSize => {
-  // Add one so that even if the control's imageSize is 0, the images are
-  // still visible
-  imageSize = (imageSize + 1) / 101
-
-  // Based on unit circle: Small values of image size will get boosted,
-  // large values will get reduced compared to a linear sizing
-  return 200 * Math.sqrt(1 - Math.pow(imageSize - 1, 2))
 }
 
 module.exports = Images

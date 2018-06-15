@@ -2,17 +2,15 @@
 
 const ImageMarginInput = ({ imageMargin, onChange }) => (
   <div>
+    <label htmlFor="imageMargin">Spacing: </label>
     <input
       max={100}
-      min={0}
+      min={3}
       name="imageMargin"
       type="range"
       value={imageMargin}
-      onChange={event =>
-        onChange(Math.max(0, Math.min(100, Number(event.target.value))))
-      }
+      onChange={event => onChange(event.target.value)}
     />
-    <label htmlFor="imageMargin">{imageMargin}</label>
   </div>
 )
 

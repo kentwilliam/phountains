@@ -8,6 +8,15 @@ const globalCSS = (
       background: ${colorScheme.background.medium};
     }
 
+    #app {
+      opacity: 0;
+      transition: 0.6s;
+    }
+
+    #app.mounted {
+      opacity: 1;
+    }
+
     * {
       margin: 0;
       font-size: 16px;

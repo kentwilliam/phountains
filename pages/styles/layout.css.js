@@ -1,7 +1,7 @@
 // @format
 
 const layout = {
-  defaultPadding: "1vw 1.6vw"
+  defaultPadding: "8px 12px"
 }
 
 module.exports = layout
